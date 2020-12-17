@@ -1,4 +1,4 @@
 'use strict';
-import './style/index.sass';
+import './styles/index.scss';
 
-console.log('hello fgc 2');
+console.log('hello fgc');

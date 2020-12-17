@@ -9,12 +9,14 @@ module.exports = {
   mode: 'development',
   entry: { index: './index.js' },
   output: {
+    publicPath: '',
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: 'styles/[name].[contenthash].css',
+      chunkFilename: '[id].css',
     }),
     new HTMLWebpackPlugin({
       template: '../index.html',
@@ -33,20 +35,30 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'public/fonts/',
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.s[ac]ss$/,
         use: [
-          'style-loader',
-
+          MiniCssExtractPlugin.loader,
           'css-loader',
-
+          'postcss-loader',
           {
             loader: 'sass-loader',
             options: {
-              // Prefer `dart-sass`
               implementation: require('sass'),
             },
           },
