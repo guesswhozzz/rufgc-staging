@@ -7,7 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: { index: './index.js' },
+  entry: { index: './index.js', stats: './stats.js' },
   output: {
     publicPath: '',
     filename: '[name].[contenthash].js',
@@ -19,8 +19,9 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new HTMLWebpackPlugin({
+      filename: 'index.html',
       template: '../index.html',
-      chunks: ['preloader', 'index'],
+      //inject: 'head',
     }),
     new CleanWebpackPlugin({
       verbose: true,
