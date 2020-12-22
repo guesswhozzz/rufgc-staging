@@ -1,6 +1,7 @@
 @font-face {
-  font-family: "arcade";
-  src: url(../public/fonts/arcade.ttf) format("ttf"), url(../public/fonts/arcade.woff) format("woff");
+  font-family: 'arcade';
+  src: url(../public/fonts/arcade.ttf) format('ttf'),
+    url(../public/fonts/arcade.woff) format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -157,8 +158,8 @@ input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   min-height: 100%;
 }
 
@@ -169,7 +170,7 @@ input::placeholder {
 
 .app-header {
   -ms-flex-preferred-size: 20%;
-      flex-basis: 20%;
+  flex-basis: 20%;
   background: transparent;
   border-bottom: 1px solid #303030;
 }
@@ -189,8 +190,8 @@ input::placeholder {
 
 .app-main {
   -webkit-box-flex: 60%;
-      -ms-flex: 60%;
-          flex: 60%;
+  -ms-flex: 60%;
+  flex: 60%;
   font-size: 2rem;
   background: transparent;
 }
@@ -202,15 +203,15 @@ input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: "arcade";
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: 'arcade';
   color: #afd7af;
   margin: 120px 0;
 }
@@ -251,7 +252,7 @@ input::placeholder {
 
 .app-footer {
   -ms-flex-preferred-size: 20%;
-      flex-basis: 20%;
+  flex-basis: 20%;
   background: transparent;
   border-top: 1px solid #303030;
 }
@@ -261,8 +262,8 @@ input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin: 15px 0;
 }
 
@@ -287,7 +288,7 @@ input::placeholder {
 
 .social {
   -ms-flex-preferred-size: 10%;
-      flex-basis: 10%;
+  flex-basis: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
