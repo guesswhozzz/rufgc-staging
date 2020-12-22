@@ -7,7 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: { index: './index.js', stats: './stats.js' },
+  entry: { index: './index.js' },
   output: {
     publicPath: '',
     filename: '[name].[contenthash].js',

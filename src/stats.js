@@ -12,19 +12,15 @@
     (k.src = r),
     a.parentNode.insertBefore(k, a);
 })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-
 ym(70704454, 'init', {
   clickmap: true,
   trackLinks: true,
   accurateTrackBounce: true,
 });
-
 // GOOGLE
 window.dataLayer = window.dataLayer || [];
-
 function gtag() {
   dataLayer.push(arguments);
 }
 gtag('js', new Date());
-
 gtag('config', 'UA-155103751-1');
