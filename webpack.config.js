@@ -67,6 +67,11 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    alias: {
+      fonts: path.resolve(__dirname, 'src/public/fonts'),
+    },
+  },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
