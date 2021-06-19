@@ -20,7 +20,9 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       filename: 'index.html',
-      template: '../index.html',
+      template: path.resolve(__dirname, 'src', 'index.html'),
+      
+      // 'src/index.html',
       //inject: 'head',
     }),
     new CleanWebpackPlugin({
@@ -39,10 +41,9 @@ module.exports = {
         test: /\.(ttf|eot|woff|woff2)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: 'public/fonts/',
+              limit: 8192,
             },
           },
         ],
