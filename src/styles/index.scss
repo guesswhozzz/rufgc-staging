@@ -1,5 +1,6 @@
 @import './_fonts';
 @import './_reset';
+@import './cool-media';
 
 .blink {
   animation: blink-animation 1s steps(5, start) infinite;
@@ -55,22 +56,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'arcade';
   color: #afd7af;
   margin: 120px 0;
   &__title {
+    font-family: 'arcade';
     font-size: 8rem;
     text-transform: uppercase;
     padding-bottom: 40px;
-    @media (max-width: 1024px) {
-      font-size: 6rem;
-    }
-    @media (max-width: 590px) {
-      font-size: 3.5rem;
-    }
-    @media (max-width: 374px) {
-      font-size: 3rem;
-    }
+    @include desktop-props((
+      font-size: (
+        1024: 6rem,
+      ),
+    ));
+    @include mobile-props((
+      375: 3rem, 
+      590: 3.5rem,
+    ));
   }
   &__action {
     font-size: 2rem;
