@@ -1,0 +1,170 @@
+@import './utils.scss';
+
+
+$min-desktop-width: 960;
+
+$mobile: 'mobile';
+$desktop: 'desktop';
+$all: 'all';
+
+@function fn__get-widths($args-map) {
+    $widths: ();
+
+    @each $prop, $values-map in $args-map {
+        @each $width, $value in $values-map {
+            $is-width-in-widths: index($widths, $width);
+
+            @if (not $is-width-in-widths) {
+                $widths: append($widths, $width);
+            }
+        }
+    }
+
+    @return $widths;
+}
+
+@function fn__get-widths-with-prop($prop, $values-map) {
+    $widths: map-keys($values-map);
+    $result-map: ();
+
+    @each $width in $widths {
+        $value: map-get($values-map, $width);
+        $width-map: ($width: ($prop: $value));
+
+        $result-map: map-merge($result-map, $width-map);
+    }
+
+    @return $result-map;
+}
+
+@function fn__define-media-type($arg) {
+    @if ($arg == $mobile) {
+        @return $mobile;
+    }
+    @if ($arg == $desktop) {
+        @return $desktop;
+    }
+    @if ($arg == $all) {
+        @return $all;
+    }
+    @if ($arg < $min-desktop-width) {
+        @return $mobile;
+    }
+    @if ($arg >= $min-desktop-width) {
+        @return $desktop;
+    }
+
+    @return null;
+}
+
+
+@mixin media($low-limit, $top-limit: null) {
+    @if ($low-limit == $mobile) {
+        @media screen and (max-width: #{$min-desktop-width - 1}px) {
+            @content;
+        }
+    }
+    @else if ($low-limit == $desktop) {
+        @media screen and (min-width: #{$min-desktop-width}px) {
+            @content;
+        }
+    }
+    @else if ($low-limit == $all) {
+        @media screen {
+            @content;
+        }
+    }
+
+    @else if ($top-limit and $low-limit) {
+        @media screen and (min-width: #{$low-limit}px) and (max-width: #{$top-limit}px) {
+            @content;
+        }
+    }
+    @else if ($low-limit and (not $top-limit)) {
+        $media-type: fn__define-media-type($low-limit);
+
+        @if ($media-type == $mobile) {
+            @media screen and (min-width: #{$low-limit}px) and (max-width: #{$min-desktop-width - 1}px) {
+                @content;
+            }
+        }
+        @if ($media-type == $desktop) {
+            @media screen and (min-width: #{$low-limit}px) {
+                @content;
+            }
+        }
+    }
+}
+
+
+@mixin props-by-width($width, $props-map) {
+    @include media($width) {
+        @each $prop, $value in $props-map {
+            #{$prop}: $value;
+        }
+    }
+}
+
+@mixin props-by-media($args...) {
+    $all-props-map: ();
+
+    @each $prop, $params-map in $args {
+        $prop-map: fn__get-widths-with-prop($prop, $params-map);
+        $all-props-map: fn__map-deep-merge($all-props-map, $prop-map);
+    }
+
+    $widths: map-keys($all-props-map);
+    $sorted-widths: list-sort($widths);
+
+    @each $width in $sorted-widths {
+        $props-map: map-get($all-props-map, $width);
+
+        @include props-by-width($width, $props-map)
+    }
+}
+
+@mixin props-by-widths($args-map) {
+    $all-props-map: ();
+
+    @each $prop, $values-map in $args-map {
+        $prop-map: fn__get-widths-with-prop($prop, $values-map);
+        $all-props-map: fn__map-deep-merge($all-props-map, $prop-map);
+    }
+
+    $widths: map-keys($all-props-map);
+    $sorted-widths: list-sort($widths);
+
+    @each $width in $sorted-widths {
+        $props-map: map-get($all-props-map, $width);
+
+        @include props-by-width($width, $props-map)
+    }
+}
+
+@mixin restricted-props($min-width, $max-width, $args-map) {
+    $media-type: fn__define-media-type($min-width);
+
+    $low-limit: $min-width or $media-type;
+    $top-limit: $max-width or null;
+
+    @include media($low-limit, $top-limit) {
+        @each $prop, $args in $args-map {
+            @if (type-of($args) != map) {
+                #{$prop}: #{$args};
+            }
+            @else {
+                @include props-by-widths(($prop: $args));
+            }
+        }
+    }
+}
+
+@mixin mobile-props($args-map) {
+    @include restricted-props($mobile, null, $args-map);
+}
+@mixin desktop-props($args-map) {
+    @include restricted-props($desktop, null, $args-map);
+}
+@mixin all-props($args-map) {
+    @include restricted-props($all, null, $args-map);
+}
