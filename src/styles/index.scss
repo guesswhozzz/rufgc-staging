@@ -35,13 +35,13 @@
   border-bottom: 1px solid #303030;
 }
 .logo {
-  font-size: 1.2rem;
-  font-family: monospace;
+  font-size: 1.6rem;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 300;
   color: #808080;
-  margin: 10px 0;
+  margin: 15px 0;
   @media (max-width: 1024px) {
-    padding: 0 10px;
+    padding: 0 20px;
   }
 }
 .app-main {
@@ -69,13 +69,16 @@
       ),
     ));
     @include mobile-props((
-      375: 3rem, 
-      590: 3.5rem,
+      font-size: (
+        320: 3rem, 
+        414: 3.5rem,
+      ),
     ));
   }
   &__action {
     font-size: 2rem;
     font-weight: 200;
+    font-family: 'arcade';
     @media (max-width: 767px) {
       font-size: 1.4rem;
     }
@@ -96,8 +99,8 @@
   margin: 15px 0;
 }
 .copywrite {
-  font-size: 1.2rem;
-  font-family: monospace;
+  font-size: 1.1rem; 
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 300;
   color: #808080;
   display: flex;
@@ -132,4 +135,11 @@
       }
     }
   }
+}
+
+.main-social {
+  font-family: 'IBM Plex Mono', monospace;
+  &__title {}
+  &__icon--container {}
+  &__icon {}
 }
