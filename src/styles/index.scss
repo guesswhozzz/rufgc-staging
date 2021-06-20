@@ -1,6 +1,7 @@
 @import './_fonts';
 @import './_reset';
 @import './cool-media';
+@import './variables';
 
 .blink {
   animation: blink-animation 1s steps(5, start) infinite;
@@ -30,19 +31,41 @@
   margin: 0 auto;
 }
 .app-header {
-  flex-basis: 20%;
+  // flex-basis: 20%;
   background: transparent;
   border-bottom: 1px solid #303030;
+  @include all-props(
+    (
+      margin-bottom: (
+        0: 80px,
+        414: 100px,
+        1024: 100px,
+      ),
+    )
+  );
 }
 .logo {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 300;
   color: #808080;
   margin: 15px 0;
-  @media (max-width: 1024px) {
-    padding: 0 20px;
-  }
+
+  @include mobile-props(
+    (
+      padding: (
+        0: 0 10px,
+        375: 0 15px,
+      ),
+    )
+  );
+  @include desktop-props(
+    (
+      padding: (
+        1024: 0 20px,
+      ),
+    )
+  );
 }
 .app-main {
   flex: 60%;
@@ -51,40 +74,55 @@
 }
 
 .badge {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #afd7af;
-  margin: 120px 0;
+  @include all-props(
+    (
+      height: 100%,
+      width: 100%,
+      display: flex,
+      flex-direction: column,
+      justify-content: center,
+      align-items: center,
+      color: #afd7af,
+      margin-bottom: (
+        320: 60px,
+        1024: 80px,
+      ),
+    )
+  );
   &__title {
     font-family: 'arcade';
     font-size: 8rem;
     text-transform: uppercase;
     padding-bottom: 40px;
-    @include desktop-props((
-      font-size: (
-        1024: 6rem,
-      ),
-    ));
-    @include mobile-props((
-      font-size: (
-        320: 3rem, 
-        414: 3.5rem,
-      ),
-    ));
+    @include desktop-props(
+      (
+        font-size: (
+          1024: 6rem,
+        ),
+      )
+    );
+    @include mobile-props(
+      (
+        font-size: (
+          320: 3rem,
+          414: 3.5rem,
+        ),
+      )
+    );
   }
   &__action {
     font-size: 2rem;
     font-weight: 200;
     font-family: 'arcade';
-    @media (max-width: 767px) {
-      font-size: 1.4rem;
-    }
-    @media (max-width: 320px) {
-      font-size: 1.2rem;
-    }
+    letter-spacing: 0.5px;
+    @include mobile-props(
+      (
+        font-size: (
+          320: 1.2rem,
+        ),
+      )
+    );
+
   }
 }
 
@@ -96,17 +134,27 @@
 .footer-content-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 15px 0;
 }
+
+.main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .copywrite {
-  font-size: 1.1rem; 
+  font-size: 1.1rem;
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 300;
   color: #808080;
   display: flex;
-  @media (max-width: 1024px) {
-    padding: 0 10px;
-  }
+  @include all-props((
+    padding: (
+      0: 0 10px,
+      1024: 20px, 
+    ),
+  ));
   &__text {
     line-height: 200%;
     text-transform: uppercase;
@@ -115,6 +163,7 @@
 .social {
   flex-basis: 10%;
   display: flex;
+  width: 100%;
   &__icon {
     cursor: pointer;
     fill: #808080;
@@ -122,16 +171,8 @@
 
     &-mail {
       width: 75%;
-      transition: fill 0.5s;
       &:hover {
         fill: #5fd7d7;
-      }
-    }
-    &-twitter {
-      width: 75%;
-      transition: fill 0.5s;
-      &:hover {
-        fill: #1da1f2;
       }
     }
   }
@@ -139,7 +180,57 @@
 
 .main-social {
   font-family: 'IBM Plex Mono', monospace;
-  &__title {}
-  &__icon--container {}
-  &__icon {}
+  margin-bottom: 120px;
+  &__title {
+    font-size: 2.1rem;
+    padding-bottom: 40px;
+    color: #808080;
+    text-align: center;
+    @include mobile-props(
+      (
+        font-size: 1.4rem,
+      )
+    );
+  }
+  &__icon--container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__icon {
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+    padding: 16px;
+    margin: 0 10px;
+    border: 2px solid #303030;
+    border-radius: 12px;
+    svg {
+      color: #808080;
+    }
+  }
+  &__icon:hover.twitch--icon {
+    svg {
+      color: $twitchColor;
+    }
+    border: 2px solid $twitchColor;
+  }
+  &__icon:hover.vk--icon {
+    svg {
+      color: $vkColor;
+    }
+    border: 2px solid $vkColor;
+  }
+  &__icon:hover.twitter--icon {
+    svg {
+      color: $twitterColor;
+    }
+    border: 2px solid $twitterColor;
+  }
+  &__icon:hover.youtube--icon {
+    svg {
+      color: $youTubeColor;
+    }
+    border: 2px solid $youTubeColor;
+  }
 }
