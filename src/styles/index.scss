@@ -34,15 +34,11 @@
   // flex-basis: 20%;
   background: transparent;
   border-bottom: 1px solid #303030;
-  @include all-props(
-    (
-      margin-bottom: (
-        0: 80px,
-        414: 100px,
-        1024: 100px,
-      ),
-    )
-  );
+  @include mobile-props((
+    margin-bottom: (
+      0: 50px,
+    ),
+  ));
 }
 .logo {
   font-size: 1.2rem;
@@ -71,6 +67,9 @@
   flex: 60%;
   font-size: 2rem;
   background: transparent;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .badge {
@@ -84,45 +83,53 @@
       align-items: center,
       color: #afd7af,
       margin-bottom: (
-        320: 60px,
+        320: 40px,
         1024: 80px,
       ),
     )
   );
   &__title {
     font-family: 'arcade';
-    font-size: 8rem;
     text-transform: uppercase;
-    padding-bottom: 40px;
-    @include desktop-props(
-      (
+    @include mobile-props((
+      padding-bottom: (
+        0: 30px,
+        375: 34px,
+        414: 38px,
+      ),
+      font-size: (
+        320: 3.08rem,
+        360: 3.5rem,
+        370: 3.65rem,
+        414: 4.05rem,
+      ),
+    ));
+    @include desktop-props((
+        padding-bottom: (
+          1024: 40px,
+          1360: 44px,
+          1640: 48px,
+        ),
         font-size: (
           1024: 6rem,
         ),
-      )
-    );
-    @include mobile-props(
-      (
-        font-size: (
-          320: 3rem,
-          414: 3.5rem,
-        ),
-      )
-    );
+    ));
   }
   &__action {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 200;
-    font-family: 'arcade';
+    font-family: 'IBM Plex Mono';
     letter-spacing: 0.5px;
-    @include mobile-props(
-      (
-        font-size: (
-          320: 1.2rem,
-        ),
-      )
-    );
-
+    @include mobile-props((
+      padding: (
+        0: 0 10px,
+      ),
+      font-size: (
+        320: 1.2rem,
+        375: 1.3rem,
+        414: 1.4rem,
+      ),
+    ));
   }
 }
 
@@ -142,6 +149,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 }
 .copywrite {
   font-size: 1.1rem;
@@ -180,17 +188,26 @@
 
 .main-social {
   font-family: 'IBM Plex Mono', monospace;
-  margin-bottom: 120px;
+  margin-bottom: 40px;
   &__title {
     font-size: 2.1rem;
-    padding-bottom: 40px;
     color: #808080;
     text-align: center;
-    @include mobile-props(
-      (
+    @include mobile-props((
         font-size: 1.4rem,
-      )
-    );
+        padding-bottom: (
+          0: 30px,
+          375: 34px,
+          414: 38px,
+        ),
+      ));
+    @include desktop-props((
+        padding-bottom: (
+          1024: 40px,
+          1360: 44px,
+          1640: 48px,
+        ),
+    ));
   }
   &__icon--container {
     display: flex;
