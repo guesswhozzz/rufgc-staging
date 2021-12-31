@@ -1,0 +1,58 @@
+.main-social {
+  font-family: 'IBM Plex Mono', monospace;
+  &__title {
+    font-size: 2.1rem;
+    color: var(--color);
+    text-align: center;
+    @include mobile-props((
+        font-size: 1.4rem,
+        padding-bottom: (
+          0: 30px,
+          375: 34px,
+          414: 38px,
+        ),
+      ));
+    @include desktop-props((
+        padding-bottom: (
+          1024: 40px,
+          1360: 44px,
+          1640: 48px,
+        ),
+    ));
+  }
+  &__icon--container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__icon {
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+    padding: 16px;
+    border-radius: 12px;
+    svg {
+      color: var(--color);
+    }
+  }
+  &__icon:hover.twitch--icon {
+    svg {
+      color: $twitchColor;
+    }
+  }
+  &__icon:hover.vk--icon {
+    svg {
+      color: $vkColor;
+    }
+  }
+  &__icon:hover.twitter--icon {
+    svg {
+      color: $twitterColor;
+    }
+  }
+  &__icon:hover.youtube--icon {
+    svg {
+      color: $youTubeColor;
+    }
+  }
+}

@@ -37,6 +37,14 @@ module.exports = {
   ],
   module: {
     rules: [
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: 'url-loader',
+            },
+          ],
+        },
       {
         test: /\.(ttf|eot|woff|woff2)$/,
         use: [

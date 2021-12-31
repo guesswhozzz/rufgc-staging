@@ -1,0 +1,57 @@
+.app-footer {
+  background: transparent;
+  border-top: 1px solid var(--divider);
+  @include all-props((
+    flex-basis: (
+      0: 8vh,
+      960: 8vh,
+    ),
+    height: (
+      0: 8vh,
+      960: 8vh,
+    ),
+  ));
+}
+
+.footer-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: inherit;
+}
+.copywrite {
+  font-size: 1.1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: var(--p-weight);
+  color: var(--color);
+  display: flex;;
+}
+
+.copywrite__text {
+  line-height: 200%;
+  text-transform: uppercase;
+}
+
+.social {
+  flex-basis: 10%;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.social__icon {
+  cursor: pointer;
+}
+
+.social__icon-mail {
+  height: 24px;
+  width: 24px;
+  path {
+    fill: var(--color);
+  }
+  &:hover {
+    path {
+      fill: var(--accent-color); 
+    }
+  }
+}

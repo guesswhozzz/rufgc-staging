@@ -1,0 +1,28 @@
+.app-header {
+  background: transparent;
+  border-bottom: 1px solid var(--divider);
+  @include all-props((
+    flex-basis: (
+        0: 7vh,
+        960: 7vh,
+      ),
+    height: (
+      0: 7vh,
+      960: 7vh,
+    ),
+  ));
+}
+
+.header-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: inherit;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: var(--p-weight);
+  color: var(--color);
+}

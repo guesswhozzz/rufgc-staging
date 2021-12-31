@@ -1,0 +1,61 @@
+.badge {
+  // --duration: 0.3s;
+  // --timing: ease;
+  // transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
+  @include all-props((
+      height: 100%,
+      width: 100%,
+      display: flex,
+      flex-direction: column,
+      justify-content: center,
+      align-items: center,
+      color: var(--accent-color),
+      margin-bottom: (
+        320: 40px,
+        1024: 56px,
+      ),
+    )
+  );
+}
+
+
+.badge__title {
+  @include all-props(( 
+    font-family: 'arcade',
+    text-transform: uppercase,
+    padding-bottom: (
+      0: 30px,
+      375: 38px,
+      960: 40px,
+      1360: 44px,
+      1640: 48px,
+    ),
+    font-size: (
+      0: 2.6rem,
+      375: 3rem,
+      768: 4.6rem,
+      960: 5rem,
+      1280: 6rem, 
+      1430: 7rem,
+      1680: 8rem,
+    ),
+  ));
+}
+
+.badge__action {
+  @include all-props(( 
+    font-family: 'IBM Plex Mono',
+    letter-spacing: 0.5px,
+    font-weight: var(--p-weight),
+    text-align: center,
+    font-size: (
+      0: 1.2rem,
+      375: 1.3rem,
+      768: 1.5rem,
+      960: 1.8rem,
+      1280: 1.5rem,
+      1430: 1.8rem,
+      1680: 2rem,
+    ),
+  ));
+}

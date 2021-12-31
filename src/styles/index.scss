@@ -1,253 +1,46 @@
 @import './_fonts';
 @import './_reset';
-@import './cool-media';
+@import './utils/cool-media';
 @import './variables';
+@import './color-scheme/color.scheme';
+/* LAYOUTS */
+@import './header/index.scss';
+@import './main/index.scss';
+@import './footer/index.scss';
+/* BLOCKS */
+@import './blocks/message.scss';
+@import './blocks/social.scss';
 
-.blink {
-  animation: blink-animation 1s steps(5, start) infinite;
-  -webkit-animation: blink-animation 1s steps(5, start) infinite;
-}
-@keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
-}
-@-webkit-keyframes blink-animation {
-  to {
-    visibility: hidden;
-  }
+
+.color-test {
+  color: var(--color);
+  background-color: var(--background-color);
 }
 
 .app--background {
-  background-color: #1c1c1c;
+  --duration: 0.3s;
+  --timing: ease;
+
+  transition: color var(--duration) var(--timing), background-color var(
+        --duration
+      ) var(--timing);
+  background-color: var(--background-color);
+  // background-image: url('../public/img/mainbg.jpeg');
 }
+
 .app--layout {
   display: flex;
   flex-direction: column;
   min-height: 100%;
 }
+
 .content--limiter {
-  max-width: 1024px;
-  margin: 0 auto;
-}
-.app-header {
-  // flex-basis: 20%;
-  background: transparent;
-  border-bottom: 1px solid #303030;
-  @include mobile-props((
-    margin-bottom: (
-      0: 50px,
-    ),
-  ));
-}
-.logo {
-  font-size: 1.2rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 300;
-  color: #808080;
-  margin: 15px 0;
-
-  @include mobile-props(
-    (
-      padding: (
-        0: 0 10px,
-        375: 0 15px,
-      ),
-    )
-  );
-  @include desktop-props(
-    (
-      padding: (
-        1024: 0 20px,
-      ),
-    )
-  );
-}
-.app-main {
-  flex: 60%;
-  font-size: 2rem;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.badge {
-  @include all-props(
-    (
-      height: 100%,
-      width: 100%,
-      display: flex,
-      flex-direction: column,
-      justify-content: center,
-      align-items: center,
-      color: #afd7af,
-      margin-bottom: (
-        320: 40px,
-        1024: 80px,
-      ),
-    )
-  );
-  &__title {
-    font-family: 'arcade';
-    text-transform: uppercase;
-    @include mobile-props((
-      padding-bottom: (
-        0: 30px,
-        375: 34px,
-        414: 38px,
-      ),
-      font-size: (
-        320: 3.08rem,
-        360: 3.5rem,
-        370: 3.65rem,
-        414: 4.05rem,
-      ),
-    ));
-    @include desktop-props((
-        padding-bottom: (
-          1024: 40px,
-          1360: 44px,
-          1640: 48px,
-        ),
-        font-size: (
-          1024: 6rem,
-        ),
-    ));
-  }
-  &__action {
-    font-size: 1.8rem;
-    font-weight: 200;
-    font-family: 'IBM Plex Mono';
-    letter-spacing: 0.5px;
-    @include mobile-props((
-      padding: (
-        0: 0 10px,
-      ),
-      font-size: (
-        320: 1.2rem,
-        375: 1.3rem,
-        414: 1.4rem,
-      ),
-    ));
-  }
-}
-
-.app-footer {
-  flex-basis: 20%;
-  background: transparent;
-  border-top: 1px solid #303030;
-}
-.footer-content-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 15px 0;
-}
-
-.main-content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-}
-.copywrite {
-  font-size: 1.1rem;
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 300;
-  color: #808080;
-  display: flex;
   @include all-props((
-    padding: (
-      0: 0 10px,
-      1024: 20px, 
-    ),
+    margin: 0 auto,
+    max-width: (
+      0: 91vw,
+      960: 88vw,
+      1024:86vw,
+    )
   ));
-  &__text {
-    line-height: 200%;
-    text-transform: uppercase;
-  }
-}
-.social {
-  flex-basis: 10%;
-  display: flex;
-  width: 100%;
-  &__icon {
-    cursor: pointer;
-    fill: #808080;
-    padding: 0 5px;
-
-    &-mail {
-      width: 75%;
-      &:hover {
-        fill: #5fd7d7;
-      }
-    }
-  }
-}
-
-.main-social {
-  font-family: 'IBM Plex Mono', monospace;
-  margin-bottom: 40px;
-  &__title {
-    font-size: 2.1rem;
-    color: #808080;
-    text-align: center;
-    @include mobile-props((
-        font-size: 1.4rem,
-        padding-bottom: (
-          0: 30px,
-          375: 34px,
-          414: 38px,
-        ),
-      ));
-    @include desktop-props((
-        padding-bottom: (
-          1024: 40px,
-          1360: 44px,
-          1640: 48px,
-        ),
-    ));
-  }
-  &__icon--container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  &__icon {
-    cursor: pointer;
-    height: 60px;
-    width: 60px;
-    padding: 16px;
-    margin: 0 10px;
-    border: 2px solid #303030;
-    border-radius: 12px;
-    svg {
-      color: #808080;
-    }
-  }
-  &__icon:hover.twitch--icon {
-    svg {
-      color: $twitchColor;
-    }
-    border: 2px solid $twitchColor;
-  }
-  &__icon:hover.vk--icon {
-    svg {
-      color: $vkColor;
-    }
-    border: 2px solid $vkColor;
-  }
-  &__icon:hover.twitter--icon {
-    svg {
-      color: $twitterColor;
-    }
-    border: 2px solid $twitterColor;
-  }
-  &__icon:hover.youtube--icon {
-    svg {
-      color: $youTubeColor;
-    }
-    border: 2px solid $youTubeColor;
-  }
 }

@@ -1,0 +1,15 @@
+.app-main {
+  flex: 60%;
+  font-size: 2rem;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
